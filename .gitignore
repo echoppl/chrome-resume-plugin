@@ -1,0 +1,34 @@
+# Dependencies
+node_modules
+.pnp
+.pnp.js
+
+# Build output
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Env files (contains sensitive URLs)
+.env
+.env.*
+!.env.example
+!.env.sit2
+!.env.prod
+
+# Scratch task notes (not project source)
+task_*.md
+simplify_*.md

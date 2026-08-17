@@ -1,0 +1,57 @@
+{
+  "manifest_version": 3,
+  "name": "简历收集(本地)",
+  "version": "1.0.0",
+  "description": "简历收集插件 - 本地开发版本，上传至 localhost:3000",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "downloads",
+    "webRequest",
+    "tabs",
+    "storage",
+    "commands",
+    "cookies",
+    "system.display"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "action": {
+    "default_popup": "index.html",
+    "default_width": 440,
+    "default_height": 700,
+    "default_icon": {
+      "16": "icon-16.png",
+      "48": "icon-48.png",
+      "128": "icon-128.png"
+    }
+  },
+  "icons": {
+    "16": "icon-16.png",
+    "48": "icon-48.png",
+    "128": "icon-128.png"
+  },
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": ["*://*.zhipin.com/*"],
+      "js": ["content-zhipin.js"],
+      "run_at": "document_idle",
+      "all_frames": true
+    },
+    {
+      "matches": ["*://*.liepin.com/*"],
+      "js": ["content-liepin.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
