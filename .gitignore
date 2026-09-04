@@ -32,3 +32,19 @@ Thumbs.db
 # Scratch task notes (not project source)
 task_*.md
 simplify_*.md
+
+# 敏感文件防护 - 防止误传个人隐私或内部凭据
+docs/*.txt
+docs/*.log
+docs/*.bak
+docs/*敏感*
+docs/*secret*
+docs/*password*
+docs/*token*
+docs/*候选人*
+docs/candidate*
+docs/encrypt*
+docs/security*
+# 不要把内部系统 URL 写进 docs/ 截图说明
+docs/*内网*
+docs/*内部*
