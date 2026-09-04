@@ -4,7 +4,7 @@
     <div class="login-brand">
       <img :src="logoUrl" alt="logo" class="login-logo" />
       <div class="login-brand-text">
-        <div class="login-brand-name">丰巢简历收集</div>
+        <div class="login-brand-name">智能简历收集</div>
         <div class="login-brand-sub">简历自动解析 · 云端管理</div>
       </div>
     </div>

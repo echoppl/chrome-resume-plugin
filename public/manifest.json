@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "丰巢简历收集",
+  "name": "智能简历收集",
   "version": "1.1.0",
   "description": "在 Boss直聘/猎聘浏览候选人简历时，自动抓取 PDF 并上传云端解析，生成结构化简历库",
   "permissions": [

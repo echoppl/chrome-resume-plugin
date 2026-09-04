@@ -4,7 +4,7 @@
     <div class="plugin-header">
       <img class="header-logo" :src="logoUrl" alt="logo" />
       <div class="header-text">
-        <span class="header-title">丰巢简历一键发布</span>
+        <span class="header-title">智能简历一键发布</span>
         <span class="header-sub">多平台职位同步发布</span>
       </div>
     </div>

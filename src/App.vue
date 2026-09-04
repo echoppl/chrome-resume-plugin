@@ -8,7 +8,7 @@
     <div class="plugin-header">
       <img class="header-logo" :src="logoUrl" alt="logo" />
       <div class="header-text">
-        <span class="header-title">丰巢简历收集</span>
+        <span class="header-title">智能简历收集</span>
         <span class="header-sub">{{ siteName || '简历收集助手' }}</span>
       </div>
       <button class="logout-btn" @click="handleLogout" title="退出登录">
