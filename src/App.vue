@@ -9,7 +9,7 @@
       <img class="header-logo" :src="logoUrl" alt="logo" />
       <div class="header-text">
         <span class="header-title">丰巢简历收集</span>
-        <span class="header-sub">{{ siteName || '本地服务' }}</span>
+        <span class="header-sub">{{ siteName || '简历收集助手' }}</span>
       </div>
       <button class="logout-btn" @click="handleLogout" title="退出登录">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">

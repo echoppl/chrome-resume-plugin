@@ -5,26 +5,13 @@
       <img :src="logoUrl" alt="logo" class="login-logo" />
       <div class="login-brand-text">
         <div class="login-brand-name">丰巢简历收集</div>
-        <div class="login-brand-sub">本地开发版</div>
+        <div class="login-brand-sub">简历自动解析 · 云端管理</div>
       </div>
     </div>
 
     <!-- 表单 -->
     <div class="login-form">
       <div class="login-label">{{ isRegister ? '注册账号' : '登录账号' }}</div>
-
-      <!-- 服务器选择 -->
-      <select
-        :value="selectedServer"
-        class="server-select"
-        @change="onServerChange"
-      >
-        <option
-          v-for="opt in serverOptions"
-          :key="opt.value"
-          :value="opt.value"
-        >{{ opt.label }}</option>
-      </select>
 
       <input
         ref="usernameRef"
@@ -74,9 +61,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue';
+import { ref, computed } from 'vue';
 import { login, register } from '@/utils/auth';
-import { getApiBase, setApiBase, SERVER_OPTIONS } from '@/utils/serverConfig';
 import logoUrl from '/icon-48.png';
 
 const emit = defineEmits<{
@@ -90,19 +76,6 @@ const loading = ref(false);
 const error = ref('');
 const usernameRef = ref<HTMLInputElement>();
 const passwordRef = ref<HTMLInputElement>();
-const selectedServer = ref(SERVER_OPTIONS[0].value);
-const serverOptions = SERVER_OPTIONS;
-
-onMounted(async () => {
-  selectedServer.value = await getApiBase();
-});
-
-async function onServerChange(e: Event) {
-  const val = (e.target as HTMLSelectElement).value;
-  selectedServer.value = val;
-  await setApiBase(val);
-  error.value = '';
-}
 
 const canSubmit = computed(() => username.value.trim() && password.value.length >= 6);
 
@@ -214,29 +187,6 @@ async function handleSubmit() {
 .login-input::placeholder {
   color: #bbb;
   font-size: 14px;
-}
-
-.server-select {
-  width: 100%;
-  padding: 12px 16px;
-  font-size: 14px;
-  border: 1.5px solid #e0e0e0;
-  border-radius: 10px;
-  outline: none;
-  transition: all 0.2s;
-  background: #f8f9fb;
-  color: #333;
-  cursor: pointer;
-  appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23999' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 14px center;
-  padding-right: 36px;
-}
-.server-select:focus {
-  border-color: #4A6CF7;
-  box-shadow: 0 0 0 3px rgba(74, 108, 247, 0.08);
-  background: #fff;
 }
 
 .login-error {

@@ -1,35 +1,20 @@
 /**
- * 服务器配置模块 — 动态切换后端 API 地址
- * 存储到 chrome.storage.local，key = 'apiServer'
+ * 服务器配置模块 — API 地址统一走生产服务器
+ * （历史版本支持 chrome.storage.local 切换本地/生产，已按产品化要求移除切换入口）
  */
 
-const DEFAULT_SERVER = 'http://localhost:3000';
-
-export const SERVER_OPTIONS = [
-  { label: '本地 (localhost:3000)', value: 'http://localhost:3000' },
-  { label: '生产 (43.167.211.80)', value: 'http://43.167.211.80:3000' },
-];
+const DEFAULT_SERVER = 'http://43.167.211.80:3000';
 
 /**
  * 获取当前 API 服务器地址
+ * 兼容历史数据：若本地存储里残留 localhost 配置，一律归一到生产地址
  */
 export async function getApiBase(): Promise<string> {
   const { apiServer } = await chrome.storage.local.get(['apiServer']);
-  return apiServer || DEFAULT_SERVER;
-}
-
-/**
- * 设置 API 服务器地址（切换时清除旧的 token）
- */
-export async function setApiBase(server: string): Promise<void> {
-  const old = await getApiBase();
-  if (old !== server) {
-    // 切换服务器时清除旧凭据
-    await chrome.storage.local.remove([
-      'devUploadToken',
-      'devCredentials',
-      'devUsername',
-    ]);
+  if (!apiServer || apiServer !== DEFAULT_SERVER) {
+    // 残留的 localhost 旧配置或空值 → 统一重置为生产地址
+    await chrome.storage.local.set({ apiServer: DEFAULT_SERVER });
+    return DEFAULT_SERVER;
   }
-  await chrome.storage.local.set({ apiServer: server });
+  return DEFAULT_SERVER;
 }

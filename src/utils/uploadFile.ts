@@ -1,10 +1,10 @@
 /**
- * 本地开发版本上传文件
+ * 上传简历文件到云端服务
  * 接口: POST <server>/api/files/upload
  * Header: Authorization: Bearer <token>
  * 参数: file (multipart)
  * Token 由登录页自动管理，存储在 chrome.storage.local
- * API 地址通过 serverConfig 动态读取
+ * API 地址由 serverConfig 统一提供（生产服务器）
  */
 
 import { getToken } from './auth';
